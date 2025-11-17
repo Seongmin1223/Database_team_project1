@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="admin_check.jsp" %>
 <%@ page language="java" import="java.sql.*" %>
-<%@ page language="java" import="util.DBconnection" %>
+<%@ page language="java" import="TeamPrj.DBConnection" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,7 @@
 <body>
 <div class="container">
 <%
-    String userID_to_update = request.getParameter("userID");
+String userID_to_update = request.getParameter("userID");
 
     Connection conn = null;
     PreparedStatement pstmt = null;
@@ -33,7 +33,7 @@
     long currentBalance = 0;
 
     try {
-    	conn = DBconnection.getConnection();
+    	conn = DBConnection.getConnection();
         pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, userID_to_update);
         rs = pstmt.executeQuery();

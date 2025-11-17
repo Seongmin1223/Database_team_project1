@@ -4,7 +4,7 @@
 <%@ page language="java" import="TeamPrj.DBConnection" %>
 <%
     request.setCharacterEncoding("UTF-8");
-    String userId = (String) session.getAttribute("loggedInUserId");
+    String userId = (String) session.getAttribute("userId");
     
     String newName = request.getParameter("name");
     String newPassword = request.getParameter("password"); 

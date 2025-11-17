@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.sql.*" %>
 <%@ include file="admin_check.jsp" %>
-<%@ page language="java" import="util.DBconnection" %>
+<%@ page language="java" import="TeamPrj.DBConnection" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,7 @@
 <body>
 <div class="container">
 <%
-    String balanceParam = request.getParameter("balance_gt");
+String balanceParam = request.getParameter("balance_gt");
     long balance_gt = 10000;
     if (balanceParam != null && !balanceParam.isEmpty()) {
         try {
@@ -35,7 +35,7 @@
     
     <form action="admin_q1.jsp" method="get">
         잔액이 
-        <input type="number" name="balance_gt" value="<%= balance_gt %>" class="form-input"> 
+        <input type="number" name="balance_gt" value="<%=balance_gt%>" class="form-input"> 
         원보다 큰 사용자 조회
         <input type="submit" value="조회">
     </form>
@@ -46,14 +46,14 @@
         </thead>
         <tbody>
 <%
-    Connection conn = null;
+Connection conn = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
     String sql = "SELECT UserID, Name, Balance FROM USERS WHERE Balance > ?";
 
     try {
-    	conn = DBconnection.getConnection();
+    	conn = DBConnection.getConnection();
         pstmt = conn.prepareStatement(sql);
         
         pstmt.setLong(1, balance_gt);

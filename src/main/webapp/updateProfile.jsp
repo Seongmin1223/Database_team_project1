@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.sql.*" %>
+<%@ page language="java" import="TeamPrj.DBConnection" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,18 +78,11 @@
 <body>
 
 <%
-    String userId = (String) session.getAttribute("loggedInUserId");
+    String userId = (String) session.getAttribute("userId");
     if (userId == null) {
         response.sendRedirect("login.html");
         return; 
     }
-
-    String serverIP = "localhost";
-    String strSID = "orcl"; 
-    String portNum = "1521";
-    String user = "DBA_PROJECT";
-    String pass = "1234";
-    String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
 
     Connection conn = null;
     PreparedStatement pstmt = null;
@@ -101,8 +95,7 @@
     String currentTier = "";
 
     try {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        conn = DriverManager.getConnection(url, user, pass);
+    	conn = DBConnection.getConnection();
         pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, userId);
         

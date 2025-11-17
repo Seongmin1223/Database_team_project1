@@ -108,8 +108,6 @@ h2 {
 			href="close_auction.jsp" class="btn yellow">경매 종료</a> <a
 			href="delete_auction.jsp" class="btn grey">경매 삭제</a>
 
-		<div class="section-title">관리자 전용</div>
-
 		<%
 		String tier = (String) session.getAttribute("userTier");
 		%>

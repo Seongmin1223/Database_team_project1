@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ include file="admin_check.jsp" %>
 <%@ page language="java" import="java.sql.*" %>
-<%@ page language="java" import="util.DBconnection" %>
+<%@ page language="java" import="TeamPrj.DBConnection" %>
 <%
-    String userID_to_delete = request.getParameter("userID");
+String userID_to_delete = request.getParameter("userID");
 
     String loggedInAdmin = (String) session.getAttribute("loggedInUserId");
     if (userID_to_delete.equals(loggedInAdmin)) {
@@ -18,7 +18,7 @@
     String sql = "DELETE FROM USERS WHERE UserID = ?";
 
     try {
-    	conn = DBconnection.getConnection();
+    	conn = DBConnection.getConnection();
         pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, userID_to_delete);
         

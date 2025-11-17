@@ -62,7 +62,7 @@
 <div class="profile-wrapper">
 
 <%
-    String userId = (String) session.getAttribute("loggedInUserId");
+    String userId = (String) session.getAttribute("userId");
     if (userId == null) {
         response.sendRedirect("login.html");
         return; 

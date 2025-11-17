@@ -1,8 +1,8 @@
-package util;
+package TeamPrj;
 
 import java.sql.*;
 
-public class DBconnection {
+public class DBConnection {
     
     private static final String SERVER_IP = "localhost";
     private static final String STR_SID = "orcl";

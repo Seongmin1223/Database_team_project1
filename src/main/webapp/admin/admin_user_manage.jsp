@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="admin_check.jsp" %>
 <%@ page language="java" import="java.sql.*" %>
-<%@ page language="java" import="util.DBconnection" %>
+<%@ page language="java" import="TeamPrj.DBConnection" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +58,7 @@
         </thead>
         <tbody>
 <%
-    Connection conn = null;
+Connection conn = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
@@ -71,7 +71,7 @@
     sql += " ORDER BY Name";
 
     try {
-    	conn = DBconnection.getConnection();
+    	conn = DBConnection.getConnection();
         pstmt = conn.prepareStatement(sql);
         
         if (searchQuery != null && !searchQuery.isEmpty()) {

@@ -103,7 +103,8 @@ h2 {
 
 		<div class="section-title">경매 기능</div>
 
-		<a href="conditioned_auction_view.html" class="btn blue">경매 목록 보기(조건 추가)</a>
+		<a href="market_record_list.html" class="btn blue">경매 목록 보기(조건 추가)</a>
+		<a href="conditioned_auction_view.html" class="btn blue">아이템 별 구매 이력</a>
 		<a href="show_my_registered_item_list.html" class="btn blue">내가 등록한 아이템</a>
 		<a href="auction_list.jsp" class="btn blue">경매 목록 보기</a> <a
 			href="category_list.jsp" class="btn blue">카테고리별 아이템</a> <a

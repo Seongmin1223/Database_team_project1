@@ -25,7 +25,7 @@ if(request.getMethod().equals("POST")) {
 
     Connection conn = DBConnection.getConnection();
 
-    PreparedStatement ps = conn.prepareStatement("INSERT INTO BIDDING_RECORD (AUCTION_ID, USER_ID, BID_AMOUNT, BID_TIME) VALUES (?, ?, ?, SYSDATE)");
+    PreparedStatement ps = conn.prepareStatement("INSERT INTO BIDDING_RECORD (AUCTIONID, BIDDERID, BIDAMOUNT, BIDTIME) VALUES (?, ?, ?, SYSDATE)");
 
     ps.setLong(1, auctionId);
     ps.setString(2, userId);

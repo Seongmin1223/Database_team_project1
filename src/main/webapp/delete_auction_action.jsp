@@ -23,7 +23,7 @@
         conn = DBConnection.getConnection();
         conn.setAutoCommit(false);
 
-        String sqlCheck = "SELECT SellerID, ItemID, RegisterInventoryID FROM AUCTION WHERE AuctionID = ?";
+        String sqlCheck = "SELECT SellerID, ItemID, RegisterInventoryID FROM AUCTION WHERE AuctionID = ? FOR UPDATE";
         pstmt = conn.prepareStatement(sqlCheck);
         pstmt.setInt(1, auctionId);
         rs = pstmt.executeQuery();
@@ -40,13 +40,13 @@
             }
             
             pstmt.close();
-            String sqlInvenCheck = "SELECT count(*) FROM INVENTORY WHERE InventoryID = ?";
+            String sqlInvenCheck = "SELECT * FROM INVENTORY WHERE InventoryID = ? FOR UPDATE";
             pstmt = conn.prepareStatement(sqlInvenCheck);
             pstmt.setInt(1, invenId);
             ResultSet rsInven = pstmt.executeQuery();
             
             boolean invenExists = false;
-            if(rsInven.next() && rsInven.getInt(1) > 0) {
+            if(rsInven.next()) {
                 invenExists = true;
             }
             rsInven.close();

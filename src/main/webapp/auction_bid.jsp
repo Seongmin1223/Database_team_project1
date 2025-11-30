@@ -54,18 +54,20 @@ try {
     }
 
     ps2 = conn.prepareStatement(
-        "UPDATE AUCTION SET CurrentHighestPrice = ? WHERE AuctionID = ? and CurrentHighestPrice < ?"
+        "UPDATE AUCTION SET CurrentHighestPrice = ? WHERE AuctionID = ? and CurrentHighestPrice < ? and EXISTS (select 1 from USERS where UserId = ? and Balance >=  ?)"
     );
     ps2.setLong(1, amount);
     ps2.setLong(2, auctionId);
     ps2.setLong(3, amount);
+    ps2.setString(4, userId);
+    ps2.setLong(5, amount);
     int updated = ps2.executeUpdate();
 
     if (updated == 0) {
-        // 이미 더 높은 입찰이 있거나, 내가 넣은 금액이 현재가 이하인 경우
+        // 이미 더 높은 입찰이 있거나, 내가 넣은 금액이 현재가 이하인 경우 or 내가 가진 금액이 그 보다 없음.
         conn.rollback();
         out.println("<script>");
-        out.println("alert('입찰 실패: 현재 최고가보다 높은 금액만 입찰할 수 있습니다.');");
+        out.println("alert('입찰 실패: 가진 금액이 부족하거나 현재 최고가보다 높은 금액만 입찰할 수 있습니다.');");
         out.println("history.back();");
         out.println("</script>");
         return;

@@ -27,15 +27,17 @@ try {
     conn.setAutoCommit(false);
     
     ps1 = conn.prepareStatement(
-        "SELECT SellerID FROM AUCTION WHERE AuctionID = ? FOR UPDATE"
+        "SELECT SellerID, EndTime FROM AUCTION WHERE AuctionID = ? FOR UPDATE"
     );
     ps1.setLong(1, auctionId);
     rs = ps1.executeQuery();
 
     String sellerId = "";
+    Timestamp endTime = null;
     
     if (rs.next()) {
         sellerId = rs.getString(1);
+        endTime = rs.getTimestamp(2);
     } else {
         conn.rollback();
         out.println("<script>");
@@ -52,22 +54,25 @@ try {
         out.println("</script>");
         return;
     }
-
+    java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
     ps2 = conn.prepareStatement(
-        "UPDATE AUCTION SET CurrentHighestPrice = ? WHERE AuctionID = ? and CurrentHighestPrice < ? and EXISTS (select 1 from USERS where UserId = ? and Balance >=  ?)"
+        "UPDATE AUCTION SET CurrentHighestPrice = ? WHERE AuctionID = ? and CurrentHighestPrice < ? " +
+        "and EXISTS (select 1 from USERS where UserId = ? and Balance >=  ?) " +
+        "and Endtime > ?"
     );
     ps2.setLong(1, amount);
     ps2.setLong(2, auctionId);
     ps2.setLong(3, amount);
     ps2.setString(4, userId);
     ps2.setLong(5, amount);
+    ps2.setTimestamp(6, now);
     int updated = ps2.executeUpdate();
 
     if (updated == 0) {
         // 이미 더 높은 입찰이 있거나, 내가 넣은 금액이 현재가 이하인 경우 or 내가 가진 금액이 그 보다 없음.
         conn.rollback();
         out.println("<script>");
-        out.println("alert('입찰 실패: 가진 금액이 부족하거나 현재 최고가보다 높은 금액만 입찰할 수 있습니다.');");
+        out.println("alert('입찰 실패: 이미 마감되었거나, 가진 금액이 부족하거나, 현재 최고가보다 높은 금액만 입찰할 수 있습니다.');");
         out.println("history.back();");
         out.println("</script>");
         return;
@@ -76,11 +81,12 @@ try {
 
     ps3 = conn.prepareStatement(
         "INSERT INTO BIDDING_RECORD (AuctionID, BidderID, BidAmount, BidTime) " +
-        "VALUES (?, ?, ?, SYSDATE)"
+        "VALUES (?, ?, ?, ?)"
     );
     ps3.setLong(1, auctionId);
     ps3.setString(2, userId);
     ps3.setLong(3, amount);
+    ps3.setTimestamp(4, now);
     ps3.executeUpdate();
  
 

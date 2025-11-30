@@ -60,26 +60,20 @@
                 conn.rollback();
                 out.println("<script>alert('이미 입찰이 시작 된 경매입니다.'); history.back();</script>");
                 return;
-        }
+        }   
         
         String sqlRestore = "UPDATE INVENTORY SET Quantity = Quantity + 1 WHERE InventoryID = ?";
         ps2 = conn.prepareStatement(sqlRestore);
         ps2.setInt(1, invenId);
         int updated = ps2.executeUpdate();
 
-        // 인벤토리에 존재하지 않는 경우
         if(updated == 0){
-            String sqlInsert = "INSERT INTO INVENTORY (InventoryID, UserID, ItemID, Quantity, Conditions, Acquired_Date) " +
-                            "VALUES (?, ?, ?, 1, 'Return', SYSDATE)";
-            ps3 = conn.prepareStatement(sqlInsert);
-            ps3.setInt(1, invenId); 
-            ps3.setString(2, sellerId);
-            ps3.setInt(3, itemId);
-            ps3.executeUpdate();
+            conn.rollback();
+            out.println("<script>alert('인벤토리 복원에 실패했습니다. 관리자에게 문의해주세요.'); history.back();</script>");
         }
 
-            conn.commit();
-            out.println("<script>alert('경매가 취소되었습니다. 아이템이 인벤토리로 반환되었습니다.'); location.href='show_my_registered_item_list_action.jsp';</script>");
+        conn.commit();
+        out.println("<script>alert('경매가 취소되었습니다. 아이템이 인벤토리로 반환되었습니다.'); location.href='show_my_registered_item_list_action.jsp';</script>");
     } catch (Exception e) {
         try { if (conn != null) conn.rollback(); } catch (SQLException ex) {}
         e.printStackTrace();

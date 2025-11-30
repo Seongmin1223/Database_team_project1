@@ -260,7 +260,7 @@
                 try { if (pstmt != null) pstmt.close(); } catch (Exception ignore) {}
                 try { if (conn != null) conn.close(); } catch (Exception ignore) {}
             }
-}
+
         %>
 
         </div>

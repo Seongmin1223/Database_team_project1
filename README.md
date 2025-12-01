@@ -1,33 +1,32 @@
 # 경매장 거래 시스템
 
-## 1\. 한줄 소개
+## 한줄 소개
 
 **"데이터베이스 설계 및 구축을 목표로 개발된, 사용자 간 실시간 물품 거래 및 경매 플랫폼입니다."**
 
 
-## 2\. 목차
+## 목차
 
-1.  [한줄 소개](https://www.google.com/search?q=%231-%ED%95%9C%EC%A4%84-%EC%86%8C%EA%B0%9C)
-2.  [소개](https://www.google.com/search?q=%233-%EC%86%8C%EA%B0%9C)
-3.  [배경 및 목적](https://www.google.com/search?q=%234-%EB%B0%B0%EA%B2%BD-%EB%B0%8F-%EB%AA%A9%EC%A0%81)
-4.  [주요 기능](https://www.google.com/search?q=%235-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
-5.  [설치 및 실행](https://www.google.com/search?q=%236-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%8B%A4%ED%96%89)
-6.  [아키텍처 및 코드 설명](https://www.google.com/search?q=%237-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B0%8F-%EC%BD%94%EB%93%9C-%EC%84%A4%EB%AA%85)
-7.  [저자](https://www.google.com/search?q=%238-%EC%A0%80%EC%9E%90)
+1.  [소개](#소개)
+2.  [배경 및 목적](#배경-및-목적)
+3.  [주요 기능](#주요-기능)
+4.  [설치 및 실행](#설치-및-실행)
+5.  [아키텍처 및 코드 설명](#아키텍처-및-코드-설명)
+6.  [저자](#저자)
 
-## 3\. 소개
+## [소개]
 
 이 프로젝트는 데이타베이스 Team 7이 개발한 **온라인 경매 시스템**입니다. Java(JSP)와 Oracle Database를 기반으로 구축되었으며, 사용자는 보유한 아이템을 경매에 부치거나 다른 사용자의 물품에 입찰하여 거래할 수 있습니다. 관리자는 전체 시스템의 회원, 물품, 경매 현황을 모니터링하고 관리할 수 있는 기능을 제공합니다.
 
 <img width="1631" height="701" alt="image" src="https://github.com/user-attachments/assets/268ad8cd-761c-423d-879d-4970b46bee0b" />
 
-## 4\. 배경 및 목적
+## [배경 및 목적]
 
   * **데이터베이스 설계 실습**: 복잡한 데이터 관계(1:N, M:N)를 포함하는 경매 시스템을 직접 설계하며 ERD 구축 능력을 함양합니다.
   * **웹 애플리케이션 연동**: JSP와 JDBC를 활용하여 데이터베이스와 웹 클라이언트 간의 연동 과정을 학습합니다.
   * **거래 로직 구현**: 경매 등록, 입찰, 낙찰, 수수료 정산 등 비즈니스 로직을 트랜잭션 단위로 처리하여 데이터 무결성을 보장하는 시스템을 구현합니다.
 
-## 5\. 주요 기능
+## [주요 기능]
 
 ### 일반 사용자
 
@@ -68,7 +67,7 @@
    <img width="1616" height="750" alt="image" src="https://github.com/user-attachments/assets/ecb01746-1986-4837-af5b-d888d7b3219e" />
 
 
-## 6\. 설치 및 실행
+## [설치 및 실행]
 
 ### 필수 요구 사항 (Prerequisites)
 
@@ -114,7 +113,7 @@
       * 프로젝트 우클릭 \> `Run As` \> `Run on Server`.
       * 웹 브라우저에서 `http://localhost:8080/[프로젝트명]/index.jsp` 접속.
 
-## 7\. 아키텍처 및 코드 설명
+## [아키텍처 및 코드 설명]
 
 ### 기술 스택 (Tech Stack)
 
@@ -150,7 +149,7 @@
 <img width="1851" height="1073" alt="diagram" src="https://github.com/user-attachments/assets/0a5eb67f-ea92-44e3-a23b-8757386767fa" />
 
 
-## 8\. 저자
+## [저자]
 
 **DataBase Team 7**
 

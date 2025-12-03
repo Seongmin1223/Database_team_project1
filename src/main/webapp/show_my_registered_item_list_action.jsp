@@ -143,7 +143,7 @@
                             </div>
                         </div>
                         <a href="auction_register.jsp?invenId=<%= rs.getInt("InventoryID") %>&itemId=<%= rs.getInt("ItemID") %>&name=<%= rs.getString("Name") %>" class="btn btn-register">
-                            ⬆️ 등록
+                            등록
                         </a>
                     </div>
                 <%
@@ -205,7 +205,7 @@
         </div>
     </div>
     
-    <a href="index.jsp" class="home-btn">🏠 로비로 돌아가기</a>
+    <a href="index.jsp" class="home-btn">로비로 돌아가기</a>
 </div>
 
 </body>

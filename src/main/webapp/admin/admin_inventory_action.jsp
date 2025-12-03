@@ -62,7 +62,7 @@
                 pstmt.executeUpdate();
                 pstmt.close();
             }
-            out.println("<script>alert('✅ 지급 완료! (" + amount + "개, " + conditions + ")'); location.href='admin_inventory_manage.jsp';</script>");
+            out.println("<script>alert('지급 완료! (" + amount + "개, " + conditions + ")'); location.href='admin_inventory_manage.jsp';</script>");
         } 
         
         else if ("TAKE".equals(actionType)) {
